@@ -5,7 +5,7 @@ import {ViewSoatRoutingModule} from './view-soat-routing.module';
 import {HttpModule} from '@angular/http';
 import {FormsModule} from '@angular/forms';
 
-import {TableSoatComponent, FormSoatComponent} from './components/index';
+import {TableSoatComponent, FormSoatComponent, FilterColumnComponent} from './components/index';
 
 @NgModule({
   imports: [
@@ -17,7 +17,8 @@ import {TableSoatComponent, FormSoatComponent} from './components/index';
   declarations: [
     ViewSoatComponent,
     TableSoatComponent,
-    FormSoatComponent
+    FormSoatComponent,
+    FilterColumnComponent
   ]
 })
 export class ViewSoatModule {

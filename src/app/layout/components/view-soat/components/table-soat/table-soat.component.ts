@@ -14,12 +14,12 @@ import {SoatPdfComponent} from '../../../../../shared/components/soat-pdf/soat-p
   breakpointsProvider,
   BreakpointsService,
   BreakpointEvent
-} from '../../../../../shared/_services/breakpoints.service';
-import {PagerService} from '../../../../../shared/_services/pager.service';
-import {RoundProgressConfig} from 'angular-svg-round-progressbar';
-import {DialogService} from 'ng2-bootstrap-modal';
-import {AccountListService} from '../../../../services';
-import {AdvancedSearchDto} from '../../../../class';*/
+} from '../../../../../shared/_services/breakpoints.service';*/
+import {PagerService} from '../../../../../shared/services/pager.service';
+//import {RoundProgressConfig} from 'angular-svg-round-progressbar';
+//import {DialogService} from 'ng2-bootstrap-modal';
+//import {AccountListService} from '../../../../services';
+//import {AdvancedSearchDto} from '../../../../class';
 import {Router} from '@angular/router';
 declare var $: any;
 declare var moment: any;
@@ -87,7 +87,8 @@ export class TableSoatComponent implements OnInit, OnChanges {
   pagedItems: any[] = [];
 
   constructor(private router: Router,
-              private dialogService: DialogService) {
+              private dialogService: DialogService,
+              private pagerService: PagerService) {
 
 
   }
@@ -110,9 +111,6 @@ export class TableSoatComponent implements OnInit, OnChanges {
 
 
   ngOnChanges(changes: any): void {
-
-
-
     let setPageRequired = false;
     let updateEmitRequired = false;
 
@@ -181,7 +179,12 @@ export class TableSoatComponent implements OnInit, OnChanges {
     if (changes !== undefined && changes.internalData !== undefined && changes.internalData.currentValue) {
       updateEmitRequired = true;
     }
-
+    if (changes !== undefined && changes.pageSize !== undefined && changes.pageSize.currentValue) {
+      this.listPerPage = changes.pageSize.currentValue;
+      this.pager = this.pagerService.getPager(this.total, 1, changes.pageSize.currentValue);
+      this.internalPageSize = Math.floor(changes.pageSize.currentValue);
+      setPageRequired = true;
+    }
     if (changes !== undefined && changes.pageSizeChart !== undefined && changes.pageSizeChart.currentValue) {
       this.internalPageSizeChart = changes.pageSizeChart.currentValue;
       setPageRequired = true;
@@ -214,7 +217,18 @@ export class TableSoatComponent implements OnInit, OnChanges {
       this.internalGlobalFilter = changes.globalFilter.currentValue;
     }
 
+    if (setPageRequired && this.pager.totalItems <= 0) {
+      const page: number = this.pager.currentPage;
+      this.pager = this.pagerService.getPager(this.total, page, this.listPerPage);
+      if (this.pager.totalItems > 0)
+        this.pager.currentPage = 1;
+    }
 
+    if (changes !== undefined && changes.key !== undefined && changes.key.currentValue) {
+      this.InternalKey = changes.key.currentValue;
+    }
+    const page: number = this.pager.currentPage;
+    this.pager = this.pagerService.getPager(this.total, page, this.listPerPage);
   }
 
   DoToggleExpandedMode() {
@@ -374,7 +388,13 @@ export class TableSoatComponent implements OnInit, OnChanges {
   }
 
   UpdatePagination(page: number) {
-      }
+    // this.showActionBox=false
+    this.colFilterIndex = -1;
+    this.pager = this.pagerService.getPager(this.total, page, this.listPerPage);
+    this.updatePagination.emit({
+      newPage: page
+    });
+  }
 
   Fun_round_progress_colorInCase(list: number) {
     if (list <= 150 || null)
@@ -389,4 +409,9 @@ export class TableSoatComponent implements OnInit, OnChanges {
       return '#8B0000';
     else return '#008000';
   }
+
+  clickFilterIcon(i) {
+    this.colFilterIndex = this.colFilterIndex === i ? -1 : i;
+  }
+
 }

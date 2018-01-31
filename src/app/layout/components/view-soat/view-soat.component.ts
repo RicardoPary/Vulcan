@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Soat} from '../../../shared/class/soat';
 
-import {FormSoatService} from '../../../shared/services/form-soat.service';
-import {ViewSoatService} from '../../../shared/services/view-soat.service';
+import {FormSoatService, ViewSoatService} from '../../../shared/index';
+import {FilterSoat} from '../../../shared/class/filter-soat';
+
 
 @Component({
   selector: 'app-view-soat',
@@ -14,6 +15,7 @@ export class ViewSoatComponent implements OnInit {
   tabnameForSearch = 'All';
   allSoatsList: Soat[] = [];
   user: any;
+  totalSoats: number;
 
   accountListColumn: any = [
     {
@@ -134,13 +136,31 @@ export class ViewSoatComponent implements OnInit {
   constructor(private viewSoatService: ViewSoatService,
               private formSoatService: FormSoatService) {
 
+    this.viewSoatService.currentFilterSoats().subscribe(
+      dates => {
+        console.log(dates);
+        this.getData(dates);
+      }
+    );
+
   }
 
   ngOnInit() {
+
+  }
+
+  getData(filterSoat: FilterSoat) {
     this.formSoatService.getAccount().subscribe(
       response => {
-        this.viewSoatService.getAllSoats(response.json().id).subscribe(
+        filterSoat.userId = response.json().id;
+        this.viewSoatService.getAllSoats(filterSoat).subscribe(
           soats => this.allSoatsList = soats.json()
+        );
+
+        this.viewSoatService.getAll(response.json().id).subscribe(
+          dates => {
+            this.totalSoats = dates.json().length;
+          }
         );
       }
     );
@@ -148,6 +168,12 @@ export class ViewSoatComponent implements OnInit {
 
   viewAdvancedSearchAccounts() {
     this.statusViewAdvancedSearchAccounts = !this.statusViewAdvancedSearchAccounts;
+  }
+
+  paginationClick(event: any) {
+    const filter = this.viewSoatService.getFilterSoats();
+    filter.page = (event.newPage) - 1;
+    this.viewSoatService.sendFilterSoats(filter);
   }
 
 }

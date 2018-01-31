@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {FormSoatService} from '../../../../../shared/services/form-soat.service';
+import {FormSoatService, ViewSoatService} from '../../../../../shared/index';
 import {Form} from '../../../../../shared/class/form';
+import {FilterSoat} from '../../../../../shared/class/filter-soat';
 
 @Component({
   selector: 'app-form-soat',
@@ -15,7 +16,8 @@ export class FormSoatComponent implements OnInit {
   typesVehicles: any[] = [];
   form: Form = new Form();
 
-  constructor(private formSoatService: FormSoatService) {
+  constructor(private formSoatService: FormSoatService,
+              private viewSoatService: ViewSoatService) {
 
     this.formSoatService.getCities().subscribe(
       response => this.cities = response.json()
@@ -80,7 +82,9 @@ export class FormSoatComponent implements OnInit {
     this.formSoatService.sentFormSoat(this.form).subscribe(
       response => {
         if (response.status === 201) {
-
+          const filterSoats = new FilterSoat();
+          filterSoats.userId = '' + this.form.user.id;
+          this.viewSoatService.sendFilterSoats(filterSoats);
         }
       }
     );

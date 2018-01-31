@@ -12,7 +12,7 @@
             <ul class="nav nav-tabs mycase-tab clearfix" role="tablist">
               <li role="presentation" class="active navTabTest" [ngClass]="{'active':tabnameForSearch==='All'}">
                 <a href="javascript();" role="tab" data-toggle="tab" id="href$My_profile-All" title="All">
-                  <span>{{allSoatsList.length}}</span>
+                  <span>{{totalSoats}}</span>
                   <i class="anchortext">All Soats</i>
                 </a>
               </li>
@@ -69,7 +69,7 @@
                   <app-table-soat
                     [data]="allSoatsList"
                     [headers]="accountListColumn"
-                    [total]="listTotalActive"
+                    [total]="totalSoats"
                     anchorColumnNames="AccountNumber"
                     [dataPaging]="true"
                     [pageSize]="pageSize"

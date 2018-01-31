@@ -14,7 +14,8 @@ import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import {
   FormSoatService,
   LoginService,
-  ViewSoatService
+  ViewSoatService,
+  PagerService
 } from './shared/index';
 
 import {AuthGuard} from './shared/guard/auth.guard';
@@ -40,6 +41,7 @@ import {AuthGuard} from './shared/guard/auth.guard';
     FormSoatService,
     LoginService,
     ViewSoatService,
+    PagerService,
     AuthGuard
   ],
   bootstrap: [AppComponent]

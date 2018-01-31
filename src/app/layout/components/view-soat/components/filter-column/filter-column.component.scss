@@ -1,0 +1,55 @@
+.fitlerBox .filter-header {
+  border-bottom: 1px solid #dee5e9;
+  display: inline-block;
+  padding: 10px;
+  position: relative;
+  width: 100%;
+}
+
+.fitlerBox button.close,
+.fitlerBox button.close:hover {
+  opacity: 1;
+}
+
+.fitlerBox .filter-body label {
+  color: #666e7a;
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.fitlerBox .filter-body {
+  padding: 10px;
+}
+
+.fitlerBox button.close img {
+  width: 21px;
+}
+
+.filter-body .input-group + .input-group {
+  margin-top: 15px;
+}
+
+
+.smartText {
+  border-color: #ececec;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 2px;
+  min-width: 150px;
+  padding: 6px;
+  cursor: pointer;
+  z-index: 9999;
+  position: absolute;
+  margin-top: -6px;
+  background-color: #ffffff;
+  max-height: 200px;
+  overflow: auto;
+  overflow-x: hidden;
+}
+
+.smartText ul li:hover{
+  color:#6a707c;
+  background-color:#f0f0f0;
+}
+
+

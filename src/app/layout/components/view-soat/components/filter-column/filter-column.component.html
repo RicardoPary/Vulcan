@@ -1,0 +1,32 @@
+<form (ngSubmit)="onSubmitFilterColumnAccounts(filterColumnAccounts)"
+      #filterColumnAccounts="ngForm"
+      autocomplete="off">
+
+  <div class="fitlerBox">
+
+    <div class="filter-header">
+      <h4 class="pull-left">FILTER</h4>
+      <button type="button" class="close" (click)="closeFilter()">
+        <i class="fa fa-times" aria-hidden="true"></i>
+      </button>
+    </div>
+
+    <div class="filter-body">
+      <div class="form-group">
+
+        <div class="form-group" [ngClass]="applyCssError(accountNumber)" *ngIf="filterName== 'licensePlate'">
+          <input type="text"
+                 class="form-control"
+                 [(ngModel)]="smartFilterAccountNumber"
+                 name="{{filterName}}"
+                 ngControl="name"
+                 #accountNumber="ngModel"
+                 pattern="[0-9-]{1,15}"
+                 (focus)="onFocusAccountNumber()">
+        </div>
+
+      </div>
+      <button class="btn btn-block btn-primary" type="submit">Search</button>
+    </div>
+  </div>
+</form>

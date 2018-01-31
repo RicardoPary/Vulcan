@@ -19,19 +19,22 @@
                  aria-hidden="true">
               </i>
             </span>
+
+
           <span *ngIf="item.canfilter"
                 class="iconmoon icon-funnel filter"
                 (click)="clickFilterIcon(i)">
+            <i class="fa fa-filter" aria-hidden="true"></i>
           </span>
 
           <div *ngIf="colFilterIndex == i" class="fitlerBox">
-            <!--<app-filter-column-accounts
+            <app-filter-column
               [filterName]="item.name"
               [filterDisplayName]="item.displayName"
               [dataType]="item.dataType"
               (clickCloseFilter)="closeFilter()"
               [queueType]="queueType">
-            </app-filter-column-accounts>-->
+            </app-filter-column>
           </div>
 
         </th>
