@@ -1,0 +1,23 @@
+<div class="login-page">
+  <div class="row">
+    <div class="col-md-4 push-md-4">
+      <h1>VULCAN</h1>
+      <form (ngSubmit)="onSubmit(form)" #form="ngForm" autocomplete="off">
+        <div class="form-content">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="User Name" name="user" id="user" ngModel>
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" placeholder="Password" name="password" id="password" ngModel>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-6">
+            <button class="btn btn-block btn-primary" type="submit">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

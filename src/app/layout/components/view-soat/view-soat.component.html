@@ -1,0 +1,148 @@
+<div class="casepage" mytabshow="#tab1" style="margin: 30px 30px;">
+  <div class=" accountlist_wrap equalheight" [ngClass]="{'sm_case_wrap':IsExpanded}">
+    <div class="case_left equalbox">
+      <!-- start case_list page here-->
+      <div class="caselist-wrap profileWrap">
+        <div class="">
+          <!--start tab-->
+          <div class="tabMwrap profile_Tabwrap">
+
+
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs mycase-tab clearfix" role="tablist">
+              <li role="presentation" class="active navTabTest" [ngClass]="{'active':tabnameForSearch==='All'}">
+                <a href="javascript();" role="tab" data-toggle="tab" id="href$My_profile-All" title="All">
+                  <span>{{allSoatsList.length}}</span>
+                  <i class="anchortext">All Soats</i>
+                </a>
+              </li>
+            </ul>
+            <div class="clearfix"></div>
+
+            <div class="tab-content tbodysize">
+              <div role="tabpanel" class="tab-pane active">
+                <div class="table-case" #tabledata [style.minHeight.px]="tabledatahgt">
+
+
+                  <div class="accountlist">
+                    <h3 class="pull-left accounthead">Soats List</h3>
+
+
+                    <div class="case-title profile-search pull-right">
+                      <h3 style="height: 31px; cursor: pointer;">
+                        <span href="" class="search_icon" (click)="viewAdvancedSearchAccounts();">
+                          <i class="fa fa-plus" aria-hidden="true"></i>
+                        </span>
+                        <!--<span href="" class="search_icon"
+                              (click)="IsFilterCollapsed=!IsFilterCollapsed">
+                           <i class="fa icomoon icon-magnifying-glass" aria-hidden="true"></i>
+                        </span>-->
+                      </h3>
+
+                      <app-form-soat
+                        *ngIf="statusViewAdvancedSearchAccounts">
+                      </app-form-soat>
+
+
+                    </div>
+
+                    <div *ngIf="isCaseFilterActive"
+                         class="account-action-list pull-right"
+                         id="resetIcon"
+                         (click)="ResetFilter();"
+                         style="cursor: pointer;">
+                      <h3 style="padding: 0px; margin: 0px;">
+                        <span href="javascript:void(0)" class="fright">
+                          <i class="icon-arrows2"></i>
+                        </span>
+                      </h3>
+                    </div>
+
+                    <div class="account-action pull-right">
+                      Account Actions
+                    </div>
+
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="accountpage" #accountpage></div>
+
+                  <app-table-soat
+                    [data]="allSoatsList"
+                    [headers]="accountListColumn"
+                    [total]="listTotalActive"
+                    anchorColumnNames="AccountNumber"
+                    [dataPaging]="true"
+                    [pageSize]="pageSize"
+                    (updatePagination)="paginationClick($event)"
+                    [IsExpandedMode]="IsExpandedMode"
+                    [childTableClass]="childTableClass"
+                    [childRowClass]="childTableRowClass"
+                    [globalFilter]="globalFilterAll"
+                    (selectedRow)="accountRowSelected($event)"
+                    (anchorClicked)="SelectedAccount($event)"
+                    (updateSort)="sortClick($event)"
+                    queueType="active">
+                  </app-table-soat>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- end tab-->
+        </div>
+        <!-- End case_list page -->
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

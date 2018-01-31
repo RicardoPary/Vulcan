@@ -1,0 +1,29 @@
+<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a routerLink="view-soat" class="nav-link">
+          View Soat
+          <i class="fa fa-th"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+      <a href="javascript:void(0)" class="nav-link">
+        Others
+        <i class="fa fa-fw fa-bar-chart-o"></i>
+      </a>
+    </li>
+
+    </ul>
+
+    <a href="javascript:void(0)" class="logout" (click)="logOut();">
+      <i class="fa fa-sign-out" aria-hidden="true"></i>
+      log out
+    </a>
+
+  </div>
+</nav>
+
+<section class="main-container">
+  <router-outlet></router-outlet>
+</section>

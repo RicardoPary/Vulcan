@@ -1,0 +1,238 @@
+<div class="table-responsive">
+  <table class="table actionshow">
+
+    <thead>
+    <tr>
+      <th *ngIf="isExpandable" style="width:10px"></th>
+      <th *ngIf="internalNeedActionBox" class="checkbox_sele"></th>
+      <th *ngIf="InternalShowReviewerMapping"></th>
+      <th *ngIf="InternalIsMailBoxTableTD"></th>
+
+      <ng-template ngFor let-item [ngForOf]="this.internalHeaders" let-i="index">
+        <th *ngIf="ColumnVisibility(item.breakpoints)" [ngClass]="item.filterClass" class="{{item.name}}">
+            <span [ngClass]="{'pointer':item.canSort}" (click)="UpdateSort(item)">
+              {{item.displayName}}
+              <i *ngIf="item.canSort" class="glyphicon"
+                 [ngClass]="{ 'glyphicon-sort': column != item.name,
+                              'glyphicon-sort-by-attributes-alt': (column == item.name && !isDesc),
+                              'glyphicon-sort-by-attributes': (column == item.name && isDesc) }"
+                 aria-hidden="true">
+              </i>
+            </span>
+          <span *ngIf="item.canfilter"
+                class="iconmoon icon-funnel filter"
+                (click)="clickFilterIcon(i)">
+          </span>
+
+          <div *ngIf="colFilterIndex == i" class="fitlerBox">
+            <!--<app-filter-column-accounts
+              [filterName]="item.name"
+              [filterDisplayName]="item.displayName"
+              [dataType]="item.dataType"
+              (clickCloseFilter)="closeFilter()"
+              [queueType]="queueType">
+            </app-filter-column-accounts>-->
+          </div>
+
+        </th>
+      </ng-template>
+
+    </tr>
+    </thead>
+
+    <tfoot *ngIf=" this.internalHeaders!=undefined &&
+                    (this.internalData==undefined || this.internalData==null || this.internalData.length==0)">
+    <tr>
+      <td [attr.colspan]="this.internalHeaders.length">
+        <span> No Records  </span>
+      </td>
+    </tr>
+    </tfoot>
+
+    <tbody>
+
+    <ng-template ngFor let-item [ngForOf]="this.pagedItems" let-i="index">
+
+      <tr (click)="SelectedRow(item,i,$event)" style="height: 60px; cursor: pointer;">
+
+
+        <td *ngIf="isExpandable && rowExpandIndex!=i" style="width:10px">
+          <span class="collapsable_btn glyphicon glyphicon-plus" (click)="ShowExpand(i)">
+          </span>
+        </td>
+
+        <td *ngIf="isExpandable && rowExpandIndex==i" style="width:10px">
+          <span class="collapsable_btn glyphicon glyphicon-minus" (click)="ShowExpandMinus()">
+          </span>
+        </td>
+
+
+        <ng-template ngFor let-col [ngForOf]="this.internalHeaders" let-i="index">
+
+          <td *ngIf="ColumnVisibility(col.breakpoints) && col.isCustomized">
+            <span *ngIf="col.dataType=='date'">
+              {{item[col.name] | date:'MM-dd-yyyy' }}
+            </span>
+
+            <a *ngIf="col.roundProgressbar" href="javascript:void(0)" title="Analyze Risk Spread"
+               class="risk_score_pop fancybox-effects-d">
+              <div>
+
+                <span>
+                  <span>{{item[col.name]==null ? 0 : item[col.name]}}</span>
+                  <span style="margin-left: 10px;"><i class="fa fa-file-pdf-o fa-lg" aria-hidden="true"></i></span>
+                </span>
+
+
+              </div>
+            </a>
+
+          </td>
+
+          <td *ngIf=" ColumnVisibility(col.breakpoints) &&
+                      !col.isCustomized &&
+                      col.wrapClass == undefined">
+            <a style="cursor:pointer"
+               (click)="AnchorColumn_Clicked(item)"
+               *ngIf="checkAnchorColumn(col.name);else noAnchor">
+              {{item[col.name]}}
+            </a>
+            <ng-template #noAnchor>
+
+          <td *ngIf="ColumnVisibility(col.breakpoints) &&
+                      !col.isCustomized &&
+                      col.wrapClass == undefined &&
+                      (col.name !== 'typeVehicle' &&
+                      col.name !== 'typeUse' &&
+                      col.name !== 'city' &&
+                      col.name !== 'purchaseType')">
+          {{item[col.name]}}
+          </td>
+          <td *ngIf="ColumnVisibility(col.breakpoints) &&
+                      !col.isCustomized &&
+                      col.wrapClass == undefined && col.name == 'typeVehicle'">
+            {{item[col.name].value | lowercase}}
+          </td>
+
+          <td *ngIf="ColumnVisibility(col.breakpoints) &&
+                      !col.isCustomized &&
+                      col.wrapClass == undefined && col.name == 'typeUse'">
+            {{item[col.name].value | lowercase}}
+          </td>
+
+          <td *ngIf="ColumnVisibility(col.breakpoints) &&
+                      !col.isCustomized &&
+                      col.wrapClass == undefined && col.name == 'city'">
+            {{item[col.name].value | lowercase}}
+          </td>
+
+          <td *ngIf="ColumnVisibility(col.breakpoints) &&
+                      !col.isCustomized &&
+                      col.wrapClass == undefined && col.name == 'purchaseType'">
+            {{item[col.name].value | lowercase }}
+          </td>
+            </ng-template>
+          </td>
+
+
+
+        </ng-template>
+      </tr>
+
+
+      <tr *ngIf="isExpandable && rowExpandIndex==i" [ngClass]="InternalChildRowClass">
+        <td style="width:10px">
+        </td>
+
+        <td [attr.colspan]="this.internalHeaders.length">
+
+          <table [ngClass]="InternalChildTableClass">
+            <ng-template ngFor let-col [ngForOf]="this.internalHeaders">
+              <tr *ngIf="!ColumnVisibility(col.breakpoints)">
+                <th width="40%">
+                  <span *ngIf="col.isVisible === undefined || col.isVisible == true">
+                    {{col.displayName}}
+                  </span>
+                </th>
+                <td *ngIf="col.name!='RiskScore' &&
+                      col.name!='FindingRiskScore' &&
+                      col.name!='DiffScore' &&
+                      col.dataType != 'date'">
+                  <span *ngIf="item[col.name] != 0">
+                    {{item[col.name]}}
+                  </span>
+                </td>
+              </tr>
+            </ng-template>
+          </table>
+
+        </td>
+      </tr>
+    </ng-template>
+    </tbody>
+  </table>
+</div>
+
+
+<div *ngIf="internalDataPaging" class="VDtable_footer">
+  <div class="row">
+
+    <div class="col-sm-4">
+      <span class="label label-default">
+        {{pager.currentPage}} of {{pager.totalPages}}, Total Records - {{pager.totalItems}}
+      </span>
+    </div>
+
+    <div class="col-sm-8 text-right">
+      <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+
+        <li [ngClass]="{disabled:pager.currentPage === 1}">
+          <a *ngIf="pager.currentPage === 1">
+            <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+          </a>
+          <a *ngIf="pager.currentPage !== 1"
+             (click)="UpdatePagination(1)">
+            <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+          </a>
+        </li>
+
+        <li [ngClass]="{disabled:pager.currentPage === 1}">
+          <a *ngIf="pager.currentPage === 1">
+            <i class="fa fa-angle-left" aria-hidden="true"></i>
+          </a>
+          <a *ngIf="pager.currentPage !== 1"
+             (click)="UpdatePagination(pager.currentPage - 1)">
+            <i class="fa fa-angle-left" aria-hidden="true"></i>
+          </a>
+        </li>
+
+        <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+          <a (click)="UpdatePagination(page)">{{page}}</a>
+        </li>
+
+        <li [ngClass]="{disabled:pager.currentPage >= pager.totalPages}">
+          <a *ngIf="pager.currentPage >= pager.totalPages">
+            <i class="fa fa-angle-right" aria-hidden="true"></i>
+          </a>
+          <a *ngIf="pager.currentPage < pager.totalPages"
+             (click)="UpdatePagination(pager.currentPage + 1)">
+            <i class="fa fa-angle-right" aria-hidden="true"></i>
+          </a>
+        </li>
+
+        <li [ngClass]="{disabled:pager.currentPage >= pager.totalPages}">
+          <a *ngIf="pager.currentPage >= pager.totalPages">
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+          </a>
+          <a *ngIf="pager.currentPage < pager.totalPages"
+             (click)="UpdatePagination(pager.totalPages)">
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      </ul>
+    </div>
+
+  </div>
+</div>
+

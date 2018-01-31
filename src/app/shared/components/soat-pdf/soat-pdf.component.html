@@ -1,0 +1,13 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <p class="modal-title">Placa : {{soat.licensePlate || 'Ninguno'}}</p>
+      <p class="modal-title">Id : {{soat.id || 'Ninguno'}}</p>
+      <button type="button" class="close" (click)="close()" >&times;</button>
+    </div>
+    <pdf-viewer [src]="pdfSrc"
+                [render-text]="true"
+                style="display: block;">
+    </pdf-viewer>
+  </div>
+</div>
