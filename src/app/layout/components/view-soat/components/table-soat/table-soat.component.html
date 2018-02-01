@@ -21,8 +21,8 @@
 
           <span *ngIf="item.canfilter"
                 class="iconmoon icon-funnel filter"
-                (click)="clickFilterIcon(i)">
-            <i class="fa fa-filter" aria-hidden="true"></i>
+                (click)="clickFilterIcon(i)" style="cursor:pointer;">
+            <i class="fa fa-filter" aria-hidden="true" style="color: #DFAE46;"></i>
           </span>
 
           <div *ngIf="colFilterIndex == i" class="fitlerBox">

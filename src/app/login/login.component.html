@@ -1,23 +1,12 @@
-<div class="login-page">
-  <div class="row">
-    <div class="col-md-4 push-md-4">
-      <h1>VULCAN</h1>
-      <form (ngSubmit)="onSubmit(form)" #form="ngForm" autocomplete="off">
-        <div class="form-content">
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="User Name" name="user" id="user" ngModel>
-          </div>
-          <div class="form-group">
-            <input type="password" class="form-control" placeholder="Password" name="password" id="password" ngModel>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-xs-6">
-            <button class="btn btn-block btn-primary" type="submit">Submit</button>
-          </div>
-        </div>
-      </form>
-    </div>
+<div class="container">
+  <div class="card card-container">
+    <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
+    <p id="profile-name" class="profile-name-card"></p>
+    <form class="form-signin" (ngSubmit)="onSubmit(form)" #form="ngForm" autocomplete="off">
+      <span id="reauth-email" class="reauth-email"></span>
+      <input type="text" class="form-control" placeholder="User Name" name="user" id="user" ngModel autofocus>
+      <input type="password" class="form-control" placeholder="Password" name="password" id="password" ngModel>
+      <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
+    </form>
   </div>
 </div>

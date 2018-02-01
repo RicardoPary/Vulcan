@@ -5,7 +5,7 @@
   <div class="fitlerBox">
 
     <div class="filter-header">
-      <h4 class="pull-left">FILTER</h4>
+      <h5 class="pull-left">FILTER</h5>
       <button type="button" class="close" (click)="closeFilter()">
         <i class="fa fa-times" aria-hidden="true"></i>
       </button>
@@ -14,19 +14,21 @@
     <div class="filter-body">
       <div class="form-group">
 
-        <div class="form-group" [ngClass]="applyCssError(accountNumber)" *ngIf="filterName== 'licensePlate'">
+        <div class="form-group" [ngClass]="applyCssError(licensePlate)" *ngIf="filterName== 'licensePlate'">
           <input type="text"
                  class="form-control"
                  [ngModel]="filtersColumnAccounts.licensePlate"
                  name="{{filterName}}"
                  ngControl="name"
-                 #accountNumber="ngModel"
-                 pattern="[0-9-]{1,15}"
-                 (focus)="onFocusAccountNumber()">
+                 #licensePlate="ngModel"
+                 pattern="[a-zA-Z0-9]{1,10}">
+          <div *ngIf="!licensePlate.valid" style="color: #a94442; font-size: 12px; font-weight: normal;">
+            Only numbers and letters.
+          </div>
         </div>
 
       </div>
-      <button class="btn btn-block btn-primary" type="submit">Search</button>
+      <button class="btn btn-block btn-primary" type="submit" [disabled]="!filterColumnSoats.valid">Search</button>
     </div>
   </div>
 </form>

@@ -37,6 +37,8 @@ export class FilterColumnComponent implements OnInit {
 
     this.filtersColumnAccounts.page = 0;
     this.viewSoatService.sendFilterSoats(this.filtersColumnAccounts);
+
+    this.closeFilter();
   }
 
   applyCssError(value) {
@@ -44,10 +46,6 @@ export class FilterColumnComponent implements OnInit {
       'has-error': this.verifyValidTouched(value),
       'has-feedback': this.verifyValidTouched(value)
     };
-  }
-
-  onFocusAccountNumber() {
-    this.statusSmartFilterAccountNumber = true;
   }
 
   verifyValidTouched(value) {

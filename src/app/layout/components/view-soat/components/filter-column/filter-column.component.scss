@@ -115,3 +115,74 @@
 .fitlerBox .filter-body .rzslider {
   margin: 17px 0 20px;
 }
+
+.filter-content {
+  display: block;
+  position: absolute;
+  top: 100%;
+  right: 5px !important;
+  background: #fff;
+  width: 160px;
+  border: 1px solid #dee5e9;
+  border-radius: 4px;
+  z-index: 9999;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  cursor: default;
+}
+
+.filter-content[hidden] {
+  display: none;
+}
+
+.filter-content:after {
+  position: absolute;
+  content: "";
+  width: 22px;
+  height: 18px;
+  right: 5px;
+  top: -17px;
+
+}
+
+.filter-content .filter-header {
+  padding: 10px 15px;
+  position: relative;
+  border-bottom: 1px solid #dee5e9;
+}
+
+.filter-content .filter-header:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.filter-content .filter-header h4 {
+  font-size: 16px;
+  margin: 3px 0;
+}
+
+.filter-content .filter-body {
+  padding: 10px 15px;
+}
+
+.filter-content .filter-body .rzslider {
+  display: block;
+}
+
+.filter-content button.close img {
+  width: 21px;
+}
+
+.filter-content button.close, .filter-content button.close:hover {
+  opacity: 1
+}
+
+.filter-content .filter-body label {
+  font-size: 12px;
+  color: #666e7a;
+  font-weight: normal;
+}
+
+.filter-content .filter-body .rzslider {
+  margin: 17px 0 20px;
+}
