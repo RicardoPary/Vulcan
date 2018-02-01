@@ -137,7 +137,6 @@ export class ViewSoatComponent implements OnInit, OnDestroy {
 
     this.viewSoatService.currentFilterSoats().subscribe(
       dates => {
-        console.log(dates);
         this.getData(dates);
       }
     );

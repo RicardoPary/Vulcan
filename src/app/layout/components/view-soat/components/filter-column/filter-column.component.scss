@@ -29,7 +29,6 @@
   margin-top: 15px;
 }
 
-
 .smartText {
   border-color: #ececec;
   border-width: 1px;
@@ -47,9 +46,72 @@
   overflow-x: hidden;
 }
 
-.smartText ul li:hover{
-  color:#6a707c;
-  background-color:#f0f0f0;
+.smartText ul li:hover {
+  color: #6a707c;
+  background-color: #f0f0f0;
 }
 
+.fitlerBox {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  width: 140px;
+  border: 1px solid #dee5e9;
+  border-radius: 4px;
+  z-index: 1;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  cursor: default;
+}
 
+.fitlerBox:after {
+  position: absolute;
+  content: "";
+  width: 22px;
+  height: 18px;
+  left: 5px;
+  top: -17px;
+}
+
+.fitlerBox .filter-header {
+  padding: 10px;
+  position: relative;
+  border-bottom: 1px solid #dee5e9;
+}
+
+.fitlerBox .filter-header:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.fitlerBox .filter-header h4 {
+  font-size: 16px;
+  margin: 3px 0;
+}
+
+.fitlerBox .filter-body {
+  padding: 10px;
+}
+
+.fitlerBox .filter-body .rzslider {
+  display: block;
+}
+
+.fitlerBox button.close img {
+  width: 21px;
+}
+
+.fitlerBox button.close, .fitlerBox button.close:hover {
+  opacity: 1
+}
+
+.fitlerBox .filter-body label {
+  font-size: 12px;
+  color: #666e7a;
+  font-weight: normal;
+}
+
+.fitlerBox .filter-body .rzslider {
+  margin: 17px 0 20px;
+}
