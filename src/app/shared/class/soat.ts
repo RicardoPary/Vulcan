@@ -1,3 +1,8 @@
+import {City} from './city';
+import {TypeUse} from './type-use';
+import {TypeVehicle} from './type-vehicle';
+import {PurchaseType} from './purchase-type';
+
 export class Soat {
   city: City = new City();
   email: string;
@@ -23,24 +28,4 @@ export class User {
   lastName: string;
   login: string;
   resetDate: string;
-}
-
-export class City {
-  id: string;
-  value: string;
-}
-
-export class TypeUse {
-  id: string;
-  value: string;
-}
-
-export class TypeVehicle {
-  id: string;
-  value: string;
-}
-
-export class PurchaseType {
-  id: string;
-  value: string;
 }

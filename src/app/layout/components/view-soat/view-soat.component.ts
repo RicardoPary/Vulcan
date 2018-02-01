@@ -1,20 +1,16 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import {Soat} from '../../../shared/class/soat';
-
-import {FormSoatService, ViewSoatService} from '../../../shared/index';
-import {FilterSoat} from '../../../shared/class/filter-soat';
+import {FormSoatService, ViewSoatService, FilterSoat} from '../../../shared/index';
 import {Subscription} from 'rxjs/Subscription';
-
 
 @Component({
   selector: 'app-view-soat',
   templateUrl: './view-soat.component.html',
   styleUrls: ['./view-soat.component.scss']
 })
-export class ViewSoatComponent implements OnInit {
+export class ViewSoatComponent implements OnInit, OnDestroy {
 
-  soatsBusyActive: Subscription;
-
+  subscriptionSoatsBusy: Subscription;
   tabnameForSearch = 'All';
   allSoatsList: Soat[] = [];
   user: any;
@@ -160,7 +156,7 @@ export class ViewSoatComponent implements OnInit {
           soats => this.allSoatsList = soats.json()
         );
 
-        this.soatsBusyActive = this.viewSoatService.getAll(response.json().id).subscribe(
+        this.subscriptionSoatsBusy = this.viewSoatService.getAll(response.json().id).subscribe(
           dates => {
             this.totalSoats = dates.json().length;
           }
@@ -179,4 +175,7 @@ export class ViewSoatComponent implements OnInit {
     this.viewSoatService.sendFilterSoats(filter);
   }
 
+  ngOnDestroy() {
+    this.subscriptionSoatsBusy.unsubscribe();
+  }
 }

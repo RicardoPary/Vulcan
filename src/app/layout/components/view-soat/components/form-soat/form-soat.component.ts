@@ -1,7 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormSoatService, ViewSoatService} from '../../../../../shared/index';
-import {Form} from '../../../../../shared/class/form';
-import {FilterSoat} from '../../../../../shared/class/filter-soat';
+import {FormSoatService, ViewSoatService, Form, FilterSoat} from '../../../../../shared/index';
 
 @Component({
   selector: 'app-form-soat',
@@ -47,7 +45,6 @@ export class FormSoatComponent implements OnInit {
   }
 
   onSubmit(form) {
-
     this.cities.map(citi => {
       if (citi.id === form.value.cities) {
         this.form.city = citi;
@@ -91,9 +88,8 @@ export class FormSoatComponent implements OnInit {
       },
       err => {
         if (err) {
-          alert('ESTE PLACA YA TIENE SOAT');
+          alert('This placa ya tiene soat');
         }
-
       }
     );
   }

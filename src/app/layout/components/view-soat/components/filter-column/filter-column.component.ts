@@ -1,8 +1,5 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
-import {Subscription} from 'rxjs/Subscription';
-import {FilterSoat} from '../../../../../shared/class/filter-soat';
-
-import {ViewSoatService} from '../../../../../shared/services/view-soat.service';
+import {FilterSoat, ViewSoatService} from '../../../../../shared/index';
 
 @Component({
   selector: 'app-filter-column',
@@ -12,52 +9,26 @@ import {ViewSoatService} from '../../../../../shared/services/view-soat.service'
 export class FilterColumnComponent implements OnInit {
 
   date = new Date();
-  aux: any;
   @Input() queueType: string;
-  listPerPage: number;
-  listTotalList: number;
-  listPage: number;
-  accountListServiceSubscription: Subscription = new Subscription();
-
   @Input() filterDisplayName: string;
   @Input() filterName: string;
   @Input() dataType: string;
-
   @Output() clickCloseFilter = new EventEmitter<any>();
-
-  auxStatusBeginDateFrom: string;
-  auxStatusBeginDateTo: string;
-  auxStatusBeginDateFromMin: any;
-
   filtersColumnAccounts: FilterSoat = new FilterSoat();
-
-  smartFilterAccountNumber = '';
-  smartFilterLegalName = '';
-  smartFilterNPI = '';
-
   statusSmartFilterAccountNumber = false;
-  statusSmartFilterLegalName = false;
-  statusSmartFilterNPI = false;
-
-  arrayAccountNumber: string[] = [];
-  arrayLegalName: string[] = [];
-  arrayNPI: string[] = [];
 
   constructor(private viewSoatService: ViewSoatService) {
   }
 
   ngOnInit() {
-    if (this.queueType === 'active') {
-      this.filtersColumnAccounts = this.viewSoatService.getFilterSoats();
-    }
+    this.filtersColumnAccounts = this.viewSoatService.getFilterSoats();
   }
 
   closeFilter() {
     this.clickCloseFilter.emit();
   }
 
-  onSubmitFilterColumnAccounts(form) {
-
+  onSubmitFilterColumnSoats(form) {
     if (form.value.licensePlate) {
       this.filtersColumnAccounts.licensePlate = form.value.licensePlate.trim();
     } else {
@@ -83,11 +54,3 @@ export class FilterColumnComponent implements OnInit {
     return !value.valid;
   }
 }
-
-
-
-
-
-
-
-

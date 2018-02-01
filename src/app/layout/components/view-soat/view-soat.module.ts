@@ -8,7 +8,6 @@ import {FormsModule} from '@angular/forms';
 import {BusyModule} from 'angular2-busy';
 
 
-
 import {TableSoatComponent, FormSoatComponent, FilterColumnComponent} from './components/index';
 
 @NgModule({

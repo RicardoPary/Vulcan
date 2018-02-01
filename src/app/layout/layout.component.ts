@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {LoginService} from '../shared/services/login.service';
+import {LoginService} from '../shared/index';
 
 @Component({
   selector: 'app-layout',

@@ -21,6 +21,7 @@ import {PagerService} from '../../../../../shared/services/pager.service';
 //import {AccountListService} from '../../../../services';
 //import {AdvancedSearchDto} from '../../../../class';
 import {Router} from '@angular/router';
+
 declare var $: any;
 declare var moment: any;
 
@@ -105,9 +106,6 @@ export class TableSoatComponent implements OnInit, OnChanges {
       this.setStatusIcon({NameColumn: nameColumn, Status: 'inactive'});
     }
   }
-
-
-
 
 
   ngOnChanges(changes: any): void {
@@ -349,8 +347,7 @@ export class TableSoatComponent implements OnInit, OnChanges {
   }
 
   SelectedRow(item: any, index: number, e: any) {
-    this.dialogService.addDialog(SoatPdfComponent , {soat: item});
-
+    this.dialogService.addDialog(SoatPdfComponent, {soat: item});
 
 
     /*let isHasClass = false;
@@ -413,5 +410,4 @@ export class TableSoatComponent implements OnInit, OnChanges {
   clickFilterIcon(i) {
     this.colFilterIndex = this.colFilterIndex === i ? -1 : i;
   }
-
 }

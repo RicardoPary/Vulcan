@@ -1,3 +1,9 @@
+import {User} from './user';
+import {City} from './city';
+import {TypeUse} from './type-use';
+import {TypeVehicle} from './type-vehicle';
+import {PurchaseType} from './purchase-type';
+
 export class Form {
   city = new City();
   email: string;
@@ -11,40 +17,4 @@ export class Form {
   typeVehicle = new TypeVehicle();
   user = new User();
   year: number;
-}
-
-export class City {
-  id: string;
-  value: string;
-}
-
-export class TypeUse {
-  id: string;
-  value: string;
-}
-
-export class TypeVehicle {
-  id: string;
-  value: string;
-}
-
-export class PurchaseType {
-  id: string;
-  value: string;
-}
-
-export class User {
-  id: number;
-  login: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  imageUrl: string;
-  activated: boolean;
-  langKey: string;
-  createdBy: string;
-  createdDate: string;
-  lastModifiedBy: string;
-  lastModifiedDate: string;
-  authorities: any;
 }

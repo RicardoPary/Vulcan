@@ -1,6 +1,5 @@
 <div class="table-responsive">
   <table class="table actionshow">
-
     <thead>
     <tr>
       <th *ngIf="isExpandable" style="width:10px"></th>
@@ -19,7 +18,6 @@
                  aria-hidden="true">
               </i>
             </span>
-
 
           <span *ngIf="item.canfilter"
                 class="iconmoon icon-funnel filter"
@@ -58,7 +56,6 @@
 
       <tr (click)="SelectedRow(item,i,$event)" style="height: 60px; cursor: pointer;">
 
-
         <td *ngIf="isExpandable && rowExpandIndex!=i" style="width:10px">
           <span class="collapsable_btn glyphicon glyphicon-plus" (click)="ShowExpand(i)">
           </span>
@@ -68,7 +65,6 @@
           <span class="collapsable_btn glyphicon glyphicon-minus" (click)="ShowExpandMinus()">
           </span>
         </td>
-
 
         <ng-template ngFor let-col [ngForOf]="this.internalHeaders" let-i="index">
 
@@ -85,7 +81,6 @@
                   <span>{{item[col.name]==null ? 0 : item[col.name]}}</span>
                   <span style="margin-left: 10px;"><i class="fa fa-file-pdf-o fa-lg" aria-hidden="true"></i></span>
                 </span>
-
 
               </div>
             </a>
@@ -109,7 +104,7 @@
                       col.name !== 'typeUse' &&
                       col.name !== 'city' &&
                       col.name !== 'purchaseType')">
-          {{item[col.name]}}
+            {{item[col.name]}}
           </td>
           <td *ngIf="ColumnVisibility(col.breakpoints) &&
                       !col.isCustomized &&
@@ -134,48 +129,44 @@
                       col.wrapClass == undefined && col.name == 'purchaseType'">
             {{item[col.name].value | lowercase }}
           </td>
-            </ng-template>
-          </td>
-
-
-
         </ng-template>
-      </tr>
-
-
-      <tr *ngIf="isExpandable && rowExpandIndex==i" [ngClass]="InternalChildRowClass">
-        <td style="width:10px">
         </td>
 
-        <td [attr.colspan]="this.internalHeaders.length">
 
-          <table [ngClass]="InternalChildTableClass">
-            <ng-template ngFor let-col [ngForOf]="this.internalHeaders">
-              <tr *ngIf="!ColumnVisibility(col.breakpoints)">
-                <th width="40%">
+    </ng-template>
+    </tr>
+    <tr *ngIf="isExpandable && rowExpandIndex==i" [ngClass]="InternalChildRowClass">
+      <td style="width:10px">
+      </td>
+
+      <td [attr.colspan]="this.internalHeaders.length">
+
+        <table [ngClass]="InternalChildTableClass">
+          <ng-template ngFor let-col [ngForOf]="this.internalHeaders">
+            <tr *ngIf="!ColumnVisibility(col.breakpoints)">
+              <th width="40%">
                   <span *ngIf="col.isVisible === undefined || col.isVisible == true">
                     {{col.displayName}}
                   </span>
-                </th>
-                <td *ngIf="col.name!='RiskScore' &&
+              </th>
+              <td *ngIf="col.name!='RiskScore' &&
                       col.name!='FindingRiskScore' &&
                       col.name!='DiffScore' &&
                       col.dataType != 'date'">
                   <span *ngIf="item[col.name] != 0">
                     {{item[col.name]}}
                   </span>
-                </td>
-              </tr>
-            </ng-template>
-          </table>
+              </td>
+            </tr>
+          </ng-template>
+        </table>
 
-        </td>
-      </tr>
+      </td>
+    </tr>
     </ng-template>
     </tbody>
   </table>
 </div>
-
 
 <div *ngIf="internalDataPaging" class="VDtable_footer">
   <div class="row">
@@ -235,7 +226,6 @@
 
       </ul>
     </div>
-
   </div>
 </div>
 

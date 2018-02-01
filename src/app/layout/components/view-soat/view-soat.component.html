@@ -67,7 +67,7 @@
                   <div class="accountpage" #accountpage></div>
 
 
-                  <div [ngBusy]="{busy: soatsBusyActive, message: 'Loading...'}">
+                  <div [ngBusy]="{busy: subscriptionSoatsBusy, message: 'Loading...'}">
                     <app-table-soat
                       [data]="allSoatsList"
                       [headers]="accountListColumn"
