@@ -5,6 +5,10 @@ import {ViewSoatRoutingModule} from './view-soat-routing.module';
 import {HttpModule} from '@angular/http';
 import {FormsModule} from '@angular/forms';
 
+import {BusyModule} from 'angular2-busy';
+
+
+
 import {TableSoatComponent, FormSoatComponent, FilterColumnComponent} from './components/index';
 
 @NgModule({
@@ -12,7 +16,8 @@ import {TableSoatComponent, FormSoatComponent, FilterColumnComponent} from './co
     CommonModule,
     HttpModule,
     ViewSoatRoutingModule,
-    FormsModule
+    FormsModule,
+    BusyModule
   ],
   declarations: [
     ViewSoatComponent,

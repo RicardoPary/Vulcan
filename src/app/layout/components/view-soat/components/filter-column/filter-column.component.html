@@ -17,7 +17,7 @@
         <div class="form-group" [ngClass]="applyCssError(accountNumber)" *ngIf="filterName== 'licensePlate'">
           <input type="text"
                  class="form-control"
-                 [(ngModel)]="smartFilterAccountNumber"
+                 [ngModel]="filtersColumnAccounts.licensePlate"
                  name="{{filterName}}"
                  ngControl="name"
                  #accountNumber="ngModel"

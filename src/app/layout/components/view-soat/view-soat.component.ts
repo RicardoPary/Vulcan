@@ -3,6 +3,7 @@ import {Soat} from '../../../shared/class/soat';
 
 import {FormSoatService, ViewSoatService} from '../../../shared/index';
 import {FilterSoat} from '../../../shared/class/filter-soat';
+import {Subscription} from 'rxjs/Subscription';
 
 
 @Component({
@@ -11,6 +12,8 @@ import {FilterSoat} from '../../../shared/class/filter-soat';
   styleUrls: ['./view-soat.component.scss']
 })
 export class ViewSoatComponent implements OnInit {
+
+  soatsBusyActive: Subscription;
 
   tabnameForSearch = 'All';
   allSoatsList: Soat[] = [];
@@ -157,7 +160,7 @@ export class ViewSoatComponent implements OnInit {
           soats => this.allSoatsList = soats.json()
         );
 
-        this.viewSoatService.getAll(response.json().id).subscribe(
+        this.soatsBusyActive = this.viewSoatService.getAll(response.json().id).subscribe(
           dates => {
             this.totalSoats = dates.json().length;
           }

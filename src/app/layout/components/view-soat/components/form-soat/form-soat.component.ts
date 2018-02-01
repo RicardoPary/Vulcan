@@ -81,11 +81,19 @@ export class FormSoatComponent implements OnInit {
 
     this.formSoatService.sentFormSoat(this.form).subscribe(
       response => {
-        if (response.status === 201) {
-          const filterSoats = new FilterSoat();
-          filterSoats.userId = '' + this.form.user.id;
-          this.viewSoatService.sendFilterSoats(filterSoats);
+        if (response) {
+          if (response.status === 201) {
+            const filterSoats = new FilterSoat();
+            filterSoats.userId = '' + this.form.user.id;
+            this.viewSoatService.sendFilterSoats(filterSoats);
+          }
         }
+      },
+      err => {
+        if (err) {
+          alert('ESTE PLACA YA TIENE SOAT');
+        }
+
       }
     );
   }

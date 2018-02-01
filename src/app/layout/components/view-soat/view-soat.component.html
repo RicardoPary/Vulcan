@@ -66,23 +66,27 @@
                   </div>
                   <div class="accountpage" #accountpage></div>
 
-                  <app-table-soat
-                    [data]="allSoatsList"
-                    [headers]="accountListColumn"
-                    [total]="totalSoats"
-                    anchorColumnNames="AccountNumber"
-                    [dataPaging]="true"
-                    [pageSize]="pageSize"
-                    (updatePagination)="paginationClick($event)"
-                    [IsExpandedMode]="IsExpandedMode"
-                    [childTableClass]="childTableClass"
-                    [childRowClass]="childTableRowClass"
-                    [globalFilter]="globalFilterAll"
-                    (selectedRow)="accountRowSelected($event)"
-                    (anchorClicked)="SelectedAccount($event)"
-                    (updateSort)="sortClick($event)"
-                    queueType="active">
-                  </app-table-soat>
+
+                  <div [ngBusy]="{busy: soatsBusyActive, message: 'Loading...'}">
+                    <app-table-soat
+                      [data]="allSoatsList"
+                      [headers]="accountListColumn"
+                      [total]="totalSoats"
+                      anchorColumnNames="AccountNumber"
+                      [dataPaging]="true"
+                      [pageSize]="pageSize"
+                      (updatePagination)="paginationClick($event)"
+                      [IsExpandedMode]="IsExpandedMode"
+                      [childTableClass]="childTableClass"
+                      [childRowClass]="childTableRowClass"
+                      [globalFilter]="globalFilterAll"
+                      (selectedRow)="accountRowSelected($event)"
+                      (anchorClicked)="SelectedAccount($event)"
+                      (updateSort)="sortClick($event)"
+                      queueType="active">
+                    </app-table-soat>
+                  </div>
+
 
                 </div>
               </div>
