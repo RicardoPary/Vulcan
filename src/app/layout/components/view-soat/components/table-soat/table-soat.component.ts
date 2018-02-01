@@ -9,21 +9,8 @@ import {
 
 import {DialogService} from 'ng2-bootstrap-modal';
 import {SoatPdfComponent} from '../../../../../shared/components/soat-pdf/soat-pdf.component';
-
-/*import {
-  breakpointsProvider,
-  BreakpointsService,
-  BreakpointEvent
-} from '../../../../../shared/_services/breakpoints.service';*/
 import {PagerService} from '../../../../../shared/services/pager.service';
-//import {RoundProgressConfig} from 'angular-svg-round-progressbar';
-//import {DialogService} from 'ng2-bootstrap-modal';
-//import {AccountListService} from '../../../../services';
-//import {AdvancedSearchDto} from '../../../../class';
 import {Router} from '@angular/router';
-
-declare var $: any;
-declare var moment: any;
 
 @Component({
   selector: 'app-table-soat',
@@ -90,8 +77,6 @@ export class TableSoatComponent implements OnInit, OnChanges {
   constructor(private router: Router,
               private dialogService: DialogService,
               private pagerService: PagerService) {
-
-
   }
 
   ngOnInit() {
@@ -317,14 +302,14 @@ export class TableSoatComponent implements OnInit, OnChanges {
   }
 
   UpdateSort(item: any) {
-    const property: string = item.name;
+    /*const property: string = item.name;
     this.isDesc = !this.isDesc;
     this.column = property;
 
     this.updateSort.emit({
       isDesc: this.isDesc,
       column: this.column
-    });
+    });*/
   }
 
   setStatusIcon(event) {

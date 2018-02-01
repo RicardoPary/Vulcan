@@ -12,16 +12,16 @@
             <span [ngClass]="{'pointer':item.canSort}" (click)="UpdateSort(item)">
               {{item.displayName}}
               <i *ngIf="item.canSort" class="glyphicon"
-                 [ngClass]="{ 'glyphicon-sort': column != item.name,
-                              'glyphicon-sort-by-attributes-alt': (column == item.name && !isDesc),
-                              'glyphicon-sort-by-attributes': (column == item.name && isDesc) }"
+                 [ngClass]="{ 'fas fa-sort-alpha-up': column != item.name,
+                              'fas fa-sort-amount-up': (column == item.name && !isDesc),
+                              'fas fa-sort-amount-down': (column == item.name && isDesc) }"
                  aria-hidden="true">
               </i>
             </span>
 
           <span *ngIf="item.canfilter"
                 class="iconmoon icon-funnel filter"
-                (click)="clickFilterIcon(i)" style="cursor:pointer;">
+                (click)="clickFilterIcon(i)" style="cursor: pointer;">
             <i class="fa fa-filter" aria-hidden="true" style="color: #DFAE46;"></i>
           </span>
 

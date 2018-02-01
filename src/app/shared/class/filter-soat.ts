@@ -1,6 +1,6 @@
 export class FilterSoat {
   userId = '';
   licensePlate = '';
-  size = 5;
+  size = 10;
   page = 0;
 }
